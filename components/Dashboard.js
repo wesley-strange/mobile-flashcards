@@ -7,7 +7,7 @@ class Dashboard extends Component {
     return (
       <View>
         <Text>Dashboard</Text>
-        <DeckList />
+        <DeckList navigation={this.props.navigation} />
       </View>
     )
   }

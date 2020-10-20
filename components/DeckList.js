@@ -7,7 +7,7 @@ class DeckList extends Component {
     return (
       <View>
         <Text>DeckList</Text>
-        <Deck />
+        <Deck navigation={this.props.navigation} />
       </View>
     )
   }

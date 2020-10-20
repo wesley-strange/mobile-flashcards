@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import Deck from './Deck'
 
 class DeckDetails extends Component {
@@ -8,9 +8,15 @@ class DeckDetails extends Component {
       <View>
         <Text>DeckDetails</Text>
         <Deck />
-        <Text>Add card button</Text>
-        <Text>Start quiz button</Text>
-        <Text>Delete deck button</Text>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('AddCard')}>
+          <Text>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
+          <Text>Start Quiz</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+          <Text>Delete Deck</Text>
+        </TouchableOpacity>
       </View>
     )
   }
