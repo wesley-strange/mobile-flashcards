@@ -4,17 +4,19 @@ import Deck from './Deck'
 
 class DeckDetails extends Component {
   render () {
+    const { navigation } = this.props
+    
     return (
       <View>
         <Text>DeckDetails</Text>
         <Deck />
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('AddCard')}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddCard')}>
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
           <Text>Start Quiz</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text>Delete Deck</Text>
         </TouchableOpacity>
       </View>

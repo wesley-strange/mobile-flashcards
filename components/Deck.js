@@ -5,9 +5,7 @@ class Deck extends Component {
   render () {
     return (
       <View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('DeckDetails')}>
-          <Text>Deck</Text>
-        </TouchableOpacity>        
+        <Text>Deck</Text> 
       </View>
     )
   }
