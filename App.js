@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 
-import Homepage from './components/Home'
+import Homepage from './components/Homepage'
 import DeckDetails from './components/DeckDetails'
 import AddCard from './components/AddCard'
 import ErrorMessage from './components/ErrorMessage'
