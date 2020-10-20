@@ -6,7 +6,6 @@ class Dashboard extends Component {
   render () {
     return (
       <View>
-        <Text>Dashboard</Text>
         <DeckList navigation={this.props.navigation} />
       </View>
     )
