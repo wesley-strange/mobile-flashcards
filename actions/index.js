@@ -51,6 +51,16 @@ export function handleInitialData() {
 // placeholder for handling Adding deck - via api
 
 // placeholder for handling adding card to a deck - via api
+export function handleAddCard(title, card) {
+  return (dispatch) => {
+    dispatch(showLoading())
+    return newCard(title, card)
+      .then(() => {
+        dispatch(addCard(title, card))
+      })
+      .then(() => dispatch(hideLoading()))
+  }
+}
 
 export function handleRemoveDeck(title) {
   console.log('handleRemove')
