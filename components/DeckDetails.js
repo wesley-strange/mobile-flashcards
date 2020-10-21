@@ -7,10 +7,10 @@ import { handleRemoveDeck } from '../actions'
 
 class DeckDetails extends Component {
   deleteDeck = () => {
-    const { navigation, route } = this.props
+    const { navigation, route, dispatch } = this.props
     const { title } = route.params
 
-    handleRemoveDeck(title)
+    dispatch(handleRemoveDeck(title))
 
     navigation.navigate('Home')
   }
@@ -38,7 +38,7 @@ class DeckDetails extends Component {
 function mapStateToProps({ decks }, { route }) {
   const { title } = route.params
   const numQuestions = decks[title].questions.length
-  
+
   return {
     numQuestions
   }

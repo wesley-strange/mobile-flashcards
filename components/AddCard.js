@@ -21,7 +21,7 @@ class AddCard extends Component {
   handleSubmit = () => {
     const { question, answer } = this.state
     const { route, navigation, dispatch } = this.props
-    const { title, numQuestions } = route.params
+    const { title } = route.params
 
     const card = {
       question,
