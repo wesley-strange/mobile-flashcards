@@ -25,7 +25,7 @@ class Quiz extends Component {
   }
   render () {
     const { deck, navigation } = this.props
-    const { title, questions } = deck
+    const { questions } = deck
     const { correct, incorrect, numQuestions, currentQuestion, showAnswer } = this.state
 
     if (questions.length === 0) {
@@ -34,7 +34,7 @@ class Quiz extends Component {
       )
     }
 
-    if (questionCount === currentQuestion) {
+    if (numQuestions === currentQuestion) {
       return (
         <QuizResults 
           numQuestions={numQuestions}
@@ -53,7 +53,6 @@ class Quiz extends Component {
           questions={questions}
           handleShowAnswer={this.handleShowAnswer}
           handleAnswer={this.handleAnswer}
-          title={title}
           showAnswer={showAnswer}
         />
       </View>
