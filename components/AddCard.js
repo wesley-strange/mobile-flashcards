@@ -27,7 +27,7 @@ class AddCard extends Component {
       question,
       answer
     }
-    
+
     dispatch(handleAddCard(title, card))
 
     this.setState({
@@ -35,10 +35,7 @@ class AddCard extends Component {
       answer: ''
     })
 
-    navigation.navigate('DeckDetails', {
-      title,
-      numQuestions: numQuestions + 1
-    })
+    navigation.navigate('DeckDetails', { title })
   }
   render () {
     return (

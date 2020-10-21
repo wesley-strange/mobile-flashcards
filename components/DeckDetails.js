@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 import Deck from './Deck'
 import { handleRemoveDeck } from '../actions'
@@ -14,8 +15,8 @@ class DeckDetails extends Component {
     navigation.navigate('Home')
   }
   render () {
-    const { navigation, route } = this.props
-    const { title, numQuestions } = route.params
+    const { navigation, route, numQuestions } = this.props
+    const { title } = route.params
 
     return (
       <View>
@@ -34,4 +35,13 @@ class DeckDetails extends Component {
   }
 }
 
-export default DeckDetails
+function mapStateToProps({ decks }, { route }) {
+  const { title } = route.params
+  const numQuestions = decks[title].questions.length
+  
+  return {
+    numQuestions
+  }
+}
+
+export default connect(mapStateToProps)(DeckDetails)
