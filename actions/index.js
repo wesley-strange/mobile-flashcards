@@ -67,7 +67,6 @@ export function handleAddCard(title, card) {
 }
 
 export function handleRemoveDeck(title) {
-  console.log('handleRemove')
   return (dispatch) => {
     dispatch(showLoading())
     return deleteDeck(title)

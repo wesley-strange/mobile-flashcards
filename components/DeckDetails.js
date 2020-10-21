@@ -15,12 +15,12 @@ class DeckDetails extends Component {
     navigation.navigate('Home')
   }
   render () {
-    const { navigation, route, numQuestions } = this.props
+    const { navigation, route } = this.props
     const { title } = route.params
 
     return (
       <View>
-        <Deck title={title} numQuestions={numQuestions} />
+        <Deck title={title} />
         <TouchableOpacity onPress={() => navigation.navigate('AddCard', { title })}>
           <Text>Add Card</Text>
         </TouchableOpacity>
@@ -35,13 +35,4 @@ class DeckDetails extends Component {
   }
 }
 
-function mapStateToProps({ decks }, { route }) {
-  const { title } = route.params
-  const numQuestions = decks[title].questions.length
-
-  return {
-    numQuestions
-  }
-}
-
-export default connect(mapStateToProps)(DeckDetails)
+export default connect()(DeckDetails)

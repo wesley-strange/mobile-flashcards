@@ -8,19 +8,16 @@ class AddDeck extends Component {
   state = {
     title: ''
   }
-  handleChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-
+  handleChange = (title) => {
     this.setState(() => ({
-      [name]: value
+      title
     }))
   }
   handleSubmit = () => {
     const { title } = this.state
-    const { navigation } = this.props
+    const { navigation, dispatch } = this.props
 
-    handleAddDeck(title)
+    dispatch(handleAddDeck(title))
 
     this.setState({
       title: ''
@@ -34,7 +31,7 @@ class AddDeck extends Component {
         <View>
           <TextInput 
             placeholder='Deck Title' 
-            onChange={this.handleChange}
+            onChangeText={this.handleChange}
           />
           <TouchableOpacity onPress={this.handleSubmit}>
             <Text>Submit</Text>

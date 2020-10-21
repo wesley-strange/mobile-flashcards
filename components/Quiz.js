@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import CardDetails from './CardDetails'
 import QuizResults from './QuizResults'
+import ErrorMessage from './ErrorMessage'
 
 class Quiz extends Component {
   state = {

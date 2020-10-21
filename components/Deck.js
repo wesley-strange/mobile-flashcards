@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 class Deck extends Component {
   render () {
@@ -14,4 +15,13 @@ class Deck extends Component {
   }
 }
 
-export default Deck
+function mapStateToProps({ decks }, { title }) {
+  const numQuestions = decks ? decks[title].questions.length : 0
+
+  return {
+    title,
+    numQuestions
+  }
+}
+
+export default connect(mapStateToProps)(Deck)
