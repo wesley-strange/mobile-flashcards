@@ -5,8 +5,7 @@ class ErrorMessage extends Component {
   render () {
     return (
       <View>
-        <Text>ErrorMessage</Text>
-        <Text>Sorry, you cannot take a quiz because there are no flashcards in the deck.</Text>
+        <Text>Sorry, you can't take a quiz because there are no flashcards in the deck.</Text>
       </View>
     )
   }
