@@ -8,25 +8,27 @@ class AddCard extends Component {
     question: '',
     answer: ''
   }
-  handleChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-
+  handleQuestionText = (question) => {
     this.setState(() => ({
-      [name]: value
+      question
+    }))
+  }
+  handleAnswerText = (answer) => {
+    this.setState(() => ({
+      answer
     }))
   }
   handleSubmit = () => {
     const { question, answer } = this.state
-    const { route, navigation } = this.props
+    const { route, navigation, dispatch } = this.props
     const { title, numQuestions } = route.params
 
     const card = {
       question,
       answer
     }
-
-    handleAddCard(title, card)
+    
+    dispatch(handleAddCard(title, card))
 
     this.setState({
       question: '',
@@ -44,11 +46,11 @@ class AddCard extends Component {
         <View>
           <TextInput 
             placeholder='Question' 
-            onChange={this.handleChange}
+            onChangeText={this.handleQuestionText}
           />
           <TextInput 
             placeholder='Answer' 
-            onChange={this.handleChange}
+            onChangeText={this.handleAnswerText}
           />
           <TouchableOpacity onPress={this.handleSubmit}>
             <Text>Submit</Text>
