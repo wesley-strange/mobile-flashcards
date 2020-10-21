@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import CardDetails from './CardDetails'
+import QuizResults from './QuizResults'
 
 class Quiz extends Component {
   state = {
@@ -39,7 +40,6 @@ class Quiz extends Component {
         <QuizResults 
           numQuestions={numQuestions}
           correct={correct}
-          incorrect={incorrect}
           navigation={navigation}
         />
       )
