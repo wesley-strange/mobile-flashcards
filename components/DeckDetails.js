@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import Deck from './Deck'
+import { blue, white } from '../utils/colors'
 import { handleRemoveDeck } from '../actions'
 
 class DeckDetails extends Component {
@@ -19,20 +20,37 @@ class DeckDetails extends Component {
     const { title } = route.params
 
     return (
-      <View>
+      <View style={styles.container}>
         <Deck title={title} />
-        <TouchableOpacity onPress={() => navigation.navigate('AddCard', { title })}>
-          <Text>Add Card</Text>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('AddCard', { title })}>
+          <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Quiz', { title })}>
-          <Text>Start Quiz</Text>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Quiz', { title })}>
+          <Text style={styles.btnText}>Start Quiz</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.deleteDeck}>
-          <Text>Delete Deck</Text>
+        <TouchableOpacity style={styles.btn} onPress={this.deleteDeck}>
+          <Text style={styles.btnText}>Delete Deck</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  btn: {
+    backgroundColor: blue,
+    padding: 25,
+    alignItems: 'center',
+    margin: 15,
+  },
+  btnText: {
+    color: white,
+    fontSize: 20,
+  }
+})
 
 export default connect()(DeckDetails)

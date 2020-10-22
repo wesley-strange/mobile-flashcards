@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import Deck from './Deck'
+import { gray, white } from '../utils/colors'
 import { handleInitialData } from './../actions'
 
 class DeckList extends Component {
@@ -12,7 +13,7 @@ class DeckList extends Component {
   render () {
     const { deckList, navigation } = this.props
     return (
-      <View>
+      <View style={styles.container}>
         {deckList && deckList.length !== 0
           ? (
             <FlatList 
@@ -20,6 +21,7 @@ class DeckList extends Component {
               keyExtractor={(item) => item.deck}
               renderItem={({item}) => (
                 <TouchableOpacity
+                  style={styles.deckBtn}
                   onPress={() => navigation.navigate('DeckDetails', {
                     title: item.deck,
                     numQuestions: item.numQuestions
@@ -31,12 +33,31 @@ class DeckList extends Component {
             />
           )
           : (
-            <Text>There are no decks.</Text>
+            <Text style={styles.errMsg}>There are no decks to present.</Text>
           )}
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'stretch',
+  },
+  deckBtn: {
+    backgroundColor: white,
+    alignItems: 'center',
+    padding: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: gray,
+    borderRadius: 10,
+  },
+  errMsg: {
+    fontSize: 20,
+    padding: 20,
+  }
+})
 
 function mapStateToProps({ decks }, { navigation }) {
   const deckList = Object.keys(decks).map((deck) => ({
