@@ -17,7 +17,8 @@ class Quiz extends Component {
   handleAnswer = (answer) => {
     this.setState((prevState) => ({
       [answer]: prevState[answer] + 1,
-      currentQuestion: prevState.currentQuestion + 1
+      currentQuestion: prevState.currentQuestion + 1,
+      showAnswer: false,
     }))
   }
   handleShowAnswer = () => {
