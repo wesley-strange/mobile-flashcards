@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
 
 import Deck from './Deck'
@@ -9,12 +9,33 @@ import { handleInitialData } from './../actions'
 import { setLocalNotification } from '../utils/helpers'
 
 class DeckList extends Component {
+  state = {
+    opacity: new Animated.Value(1)
+  }
   componentDidMount() {
     this.props.dispatch(handleInitialData())
     setLocalNotification()
   }
+  goToDeck = (item) => {
+    let { opacity } = this.state
+    const { navigation } = this.props
+
+    Animated.sequence([
+      Animated.timing(opacity, { duration: 100, toValue: 0, useNativeDriver: false }),
+      Animated.timing(opacity, { duration: 100, toValue: 1, useNativeDriver: false }),
+    ]).start()
+
+    setTimeout(() => {
+      navigation.navigate('DeckDetails', {
+        title: item.deck,
+        numQuestions: item.numQuestions
+      })
+    }, 150)
+  }
   render () {
-    const { deckList, navigation } = this.props
+    const { opacity } = this.state
+    const { deckList } = this.props
+
     return (
       <View style={styles.container}>
         {deckList && deckList.length !== 0
@@ -23,15 +44,11 @@ class DeckList extends Component {
               data={deckList}
               keyExtractor={(item) => item.deck}
               renderItem={({item}) => (
-                <TouchableOpacity
-                  style={styles.deckBtn}
-                  onPress={() => navigation.navigate('DeckDetails', {
-                    title: item.deck,
-                    numQuestions: item.numQuestions
-                  })}
-                >
-                  <Deck title={item.deck} numQuestions={item.numQuestions} />
-                </TouchableOpacity>
+                <Animated.View style={{ opacity }}>
+                  <TouchableOpacity style={styles.deckBtn} onPress={() => this.goToDeck(item)}>
+                    <Deck title={item.deck} numQuestions={item.numQuestions} />
+                  </TouchableOpacity>                  
+                </Animated.View>                
               )}
             />
           )
