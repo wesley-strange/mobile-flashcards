@@ -54,7 +54,7 @@ class AddCard extends Component {
             onChangeText={this.handleAnswerText}
           />
           <TouchableOpacity style={styles.submitBtn} onPress={this.handleSubmit}>
-            <Text style={styles.submitText}>Submit</Text>
+            <Text style={styles.submitText}>Add Card</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

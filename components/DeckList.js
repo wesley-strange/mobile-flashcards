@@ -6,9 +6,12 @@ import Deck from './Deck'
 import { gray, white } from '../utils/colors'
 import { handleInitialData } from './../actions'
 
+import { setLocalNotification } from '../utils/helpers'
+
 class DeckList extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
+    setLocalNotification()
   }
   render () {
     const { deckList, navigation } = this.props
