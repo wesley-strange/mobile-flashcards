@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { blue, white } from '../utils/colors'
 
 class QuizResults extends Component {
+  componentDidMount () {
+    clearLocalNotification()
+        .then(setLocalNotification)
+  }
   render () {
     const { numQuestions, correct, navigation, handleRestart } = this.props
     const percentage = ((correct / numQuestions) * 100).toFixed(0)
