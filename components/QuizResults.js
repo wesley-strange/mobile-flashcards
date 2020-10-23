@@ -5,12 +5,15 @@ import { blue, white } from '../utils/colors'
 
 class QuizResults extends Component {
   render () {
-    const { numQuestions, correct, navigation } = this.props
+    const { numQuestions, correct, navigation, handleRestart } = this.props
     const percentage = ((correct / numQuestions) * 100).toFixed(0)
     
     return (
       <View style={styles.container}>
         <Text style={styles.results}>{correct} / {numQuestions} correct ({percentage}%)</Text>
+        <TouchableOpacity style={styles.btn} onPress={handleRestart}>
+          <Text style={styles.btnText}>Restart Quiz</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('DeckDetails')}>
           <Text style={styles.btnText}>Back to deck</Text>
         </TouchableOpacity>
@@ -32,6 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: blue,
     padding: 10,
     alignItems: 'center',
+    marginBottom: 20,
   },
   btnText: {
     color: white,

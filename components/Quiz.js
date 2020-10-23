@@ -25,6 +25,15 @@ class Quiz extends Component {
       showAnswer: !prevState.showAnswer
     }))
   }
+  handleRestart = () => {
+    this.setState({
+      correct: 0,
+      incorrect: 0,
+      numQuestions: this.props.deck.questions.length,
+      currentQuestion: 0,
+      showAnsewr: false,
+    })
+  }
   render () {
     const { deck, navigation } = this.props
     const { questions } = deck
@@ -42,6 +51,7 @@ class Quiz extends Component {
           numQuestions={numQuestions}
           correct={correct}
           navigation={navigation}
+          handleRestart={this.handleRestart}
         />
       )
     }
