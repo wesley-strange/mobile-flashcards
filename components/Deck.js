@@ -5,7 +5,11 @@ import { gray } from '../utils/colors'
 
 class Deck extends Component {
   render () {
-    const { title, numQuestions } = this.props
+    const { title, numQuestions, deckNotPresent } = this.props
+
+    if (deckNotPresent) {
+      return <Text>Removing...</Text>
+    }
 
     return (
       <View style={styles.container}>
@@ -31,11 +35,15 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps({ decks }, { title }) {
+  const deck = decks[title]
+
+  if (!deck) return {deckNotPresent: true}
   const numQuestions = decks ? decks[title].questions.length : 0
 
   return {
     title,
-    numQuestions
+    numQuestions,
+    deckNotPresent: false,
   }
 }
 
